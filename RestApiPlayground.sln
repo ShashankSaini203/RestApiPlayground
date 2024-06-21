@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiPlayground", "RestApiPlayground.csproj", "{33DE6EB3-5138-47F9-AF4F-C5EA4772406F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground", "RestApiPlayground.csproj", "{33DE6EB3-5138-47F9-AF4F-C5EA4772406F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiPlayground.Service", "..\RestApiPlayground.Service\RestApiPlayground.Service.csproj", "{8494690E-C3B9-4361-BDB3-596A389C683D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiPlayground.Infrastructure", "..\RestApiPlayground.Infrastructure\RestApiPlayground.Infrastructure.csproj", "{2A40FEA6-90F8-4371-ABF2-CB8B2F0FD780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiPlayground.Domain", "..\RestApiPlayground.Domain\RestApiPlayground.Domain.csproj", "{FE85FAE9-CA62-4752-881A-FAF0FC84573D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{33DE6EB3-5138-47F9-AF4F-C5EA4772406F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33DE6EB3-5138-47F9-AF4F-C5EA4772406F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33DE6EB3-5138-47F9-AF4F-C5EA4772406F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8494690E-C3B9-4361-BDB3-596A389C683D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8494690E-C3B9-4361-BDB3-596A389C683D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8494690E-C3B9-4361-BDB3-596A389C683D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8494690E-C3B9-4361-BDB3-596A389C683D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A40FEA6-90F8-4371-ABF2-CB8B2F0FD780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A40FEA6-90F8-4371-ABF2-CB8B2F0FD780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A40FEA6-90F8-4371-ABF2-CB8B2F0FD780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A40FEA6-90F8-4371-ABF2-CB8B2F0FD780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE85FAE9-CA62-4752-881A-FAF0FC84573D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE85FAE9-CA62-4752-881A-FAF0FC84573D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE85FAE9-CA62-4752-881A-FAF0FC84573D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE85FAE9-CA62-4752-881A-FAF0FC84573D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
