@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground", "RestApiPlayground\RestApiPlayground.csproj", "{D5EC40E6-3192-4A2A-AAFE-9BDBC15CF85E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.Domain", "RestApiPlayground.Domain\RestApiPlayground.Domain.csproj", "{F9C193ED-90DE-4C41-9E37-B25F1C70AED2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.Infrastructure", "RestApiPlayground.Infrastructure\RestApiPlayground.Infrastructure.csproj", "{9B73D95F-603F-4188-974F-1B2A1F2ED4E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.Service", "RestApiPlayground.Service\RestApiPlayground.Service.csproj", "{BFA849FD-9F94-4D80-A761-64621B2A2689}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiPlayground.Web", "RestApiPlayground.Web\RestApiPlayground.Web.csproj", "{DA4CCA59-8154-4341-882B-52E870D54825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D5EC40E6-3192-4A2A-AAFE-9BDBC15CF85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5EC40E6-3192-4A2A-AAFE-9BDBC15CF85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5EC40E6-3192-4A2A-AAFE-9BDBC15CF85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5EC40E6-3192-4A2A-AAFE-9BDBC15CF85E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9C193ED-90DE-4C41-9E37-B25F1C70AED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9C193ED-90DE-4C41-9E37-B25F1C70AED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9C193ED-90DE-4C41-9E37-B25F1C70AED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{BFA849FD-9F94-4D80-A761-64621B2A2689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA849FD-9F94-4D80-A761-64621B2A2689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFA849FD-9F94-4D80-A761-64621B2A2689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4CCA59-8154-4341-882B-52E870D54825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4CCA59-8154-4341-882B-52E870D54825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4CCA59-8154-4341-882B-52E870D54825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4CCA59-8154-4341-882B-52E870D54825}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
