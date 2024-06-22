@@ -12,8 +12,6 @@ namespace RestApiPlayground
             builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>().SingleInstance();
 
             builder.RegisterType<EmployeeService>().As<IEmployeeService>().SingleInstance();
-
-            builder.RegisterType<EmployeeService>().As<IEmployeeService>().SingleInstance();
         }
     }
 }

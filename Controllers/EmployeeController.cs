@@ -5,7 +5,7 @@ using RestApiPlayground.Service.Services;
 namespace RestApiPlayground.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
@@ -15,13 +15,19 @@ namespace RestApiPlayground.Controllers
             _employeeService = employeeService;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Employee>> Get()
+        [HttpGet("{id}")]
+        public async Task<Employee> GetById(int id)
+        {
+            return await _employeeService.GetByIdAsync(id);
+        }
+
+        [HttpGet("getAllEmployees")]
+        public async Task<IEnumerable<Employee>> GetAll()
         {
             return await _employeeService.GetAllAsync();
         }
 
-        [HttpPost]
+        [HttpPost("createEmployee")]
         public async Task<IActionResult> Post([FromBody] Employee employee)
         {
             if (employee == null)
