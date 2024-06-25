@@ -58,7 +58,7 @@ namespace RestApiPlayground.Web.Controllers
             }
 
             await _employeeService.UpdateAsync(employee);
-            return Ok();
+            return Ok($"Employee with id {employee.Id} updated successfully");
         }
     }
 }
