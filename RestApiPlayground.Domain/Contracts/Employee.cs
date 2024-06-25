@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RestApiPlayground.Domain.Helpers.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestApiPlayground.Domain.Contracts
 {
