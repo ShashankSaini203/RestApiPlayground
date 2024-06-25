@@ -16,23 +16,33 @@ namespace RestApiPlayground.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Employee> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return await _employeeService.GetByIdAsync(id);
+            if(id < 0)
+            {
+                return BadRequest("ID is invalid. It cannot be negative.");
+            }
+            var employeeData= await _employeeService.GetByIdAsync(id);
+
+            if(employeeData == null)
+            {
+                return NotFound("Could not find employee with provided ID");
+            }
+            return Ok(await _employeeService.GetByIdAsync(id));
         }
 
         [HttpGet("getAllEmployees")]
-        public async Task<IEnumerable<Employee>> GetAll()
+        public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
             return await _employeeService.GetAllAsync();
         }
 
         [HttpPost("createEmployee")]
-        public async Task<IActionResult> Post([FromBody] Employee employee)
+        public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
         {
-            if (employee == null)
+            if (employee is null)
             {
-                return BadRequest();
+                return BadRequest("Invalid employee details.");
             }
 
             await _employeeService.AddAsync(employee);
