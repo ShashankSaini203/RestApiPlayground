@@ -14,8 +14,8 @@ namespace RestApiPlayground.Domain.Contracts
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Contact is required.")]
-        [Phone(ErrorMessage = "Invalid phone number format.")]
-        [NotPlaceholder("string", ErrorMessage = "Name cannot be 'string'.")]
-        public string Contact { get; set; }
+        [MinLength(2, ErrorMessage = "Department must be at least 2 characters long.")]
+        [NotPlaceholder("string", ErrorMessage = "Department cannot be 'string'.")]
+        public string Department { get; set; }
     }
 }
