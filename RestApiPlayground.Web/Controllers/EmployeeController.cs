@@ -40,7 +40,7 @@ namespace RestApiPlayground.Web.Controllers
         [HttpPost("createEmployee")]
         public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
         {
-            if (employee is null)
+            if (employee is null || !ModelState.IsValid)
             {
                 return BadRequest("Invalid employee details.");
             }
@@ -52,7 +52,7 @@ namespace RestApiPlayground.Web.Controllers
         [HttpPut("updateEmployee")]
         public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
         {
-            if(employee is null)
+            if(employee is null || !ModelState.IsValid)
             {
                 return BadRequest("Invalid employee details.");
             }
