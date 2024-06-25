@@ -48,5 +48,17 @@ namespace RestApiPlayground.Web.Controllers
             await _employeeService.AddAsync(employee);
             return Ok();
         }
+
+        [HttpPut("updateEmployee")]
+        public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
+        {
+            if(employee is null)
+            {
+                return BadRequest("Invalid employee details.");
+            }
+
+            await _employeeService.UpdateAsync(employee);
+            return Ok();
+        }
     }
 }
