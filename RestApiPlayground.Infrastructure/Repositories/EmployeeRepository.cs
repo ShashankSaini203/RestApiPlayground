@@ -42,14 +42,14 @@ namespace RestApiPlayground.Infrastructure.Repositories
             return Task.CompletedTask;
         }
 
-        public Task DeleteAsync(int id)
-        {
-            var employeeToRemove = _employees.FirstOrDefault(e => e.Id == id);
-            if (employeeToRemove != null)
-            {
-                _employees.Remove(employeeToRemove);
-            }
-            return Task.CompletedTask;
-        }
+        //public Task DeleteAsync(int id)
+        //{
+        //    var employeeToRemove = _employees.FirstOrDefault(e => e.Id == id);
+        //    if (employeeToRemove != null)
+        //    {
+        //        _employees.Remove(employeeToRemove);
+        //    }
+        //    return Task.CompletedTask;
+        //}
     }
 }
