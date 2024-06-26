@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.Domain", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.Infrastructure", "RestApiPlayground.Infrastructure\RestApiPlayground.Infrastructure.csproj", "{9B73D95F-603F-4188-974F-1B2A1F2ED4E7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.Service", "RestApiPlayground.Service\RestApiPlayground.Service.csproj", "{BFA849FD-9F94-4D80-A761-64621B2A2689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.Application", "RestApiPlayground.Service\RestApiPlayground.Application.csproj", "{BFA849FD-9F94-4D80-A761-64621B2A2689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiPlayground.Web", "RestApiPlayground.Web\RestApiPlayground.Web.csproj", "{DA4CCA59-8154-4341-882B-52E870D54825}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiPlayground.API", "RestApiPlayground.Web\RestApiPlayground.API.csproj", "{DA4CCA59-8154-4341-882B-52E870D54825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

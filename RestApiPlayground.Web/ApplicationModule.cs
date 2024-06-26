@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using RestApiPlayground.Domain.Interfaces;
 using RestApiPlayground.Infrastructure.Repositories;
-using RestApiPlayground.Service.Services;
+using RestApiPlayground.Application.Services;
 
-namespace RestApiPlayground.Web
+namespace RestApiPlayground.API
 {
     public class ApplicationModule : Module
     {

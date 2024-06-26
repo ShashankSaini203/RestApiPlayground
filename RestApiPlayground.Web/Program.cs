@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
-    containerBuilder.RegisterModule(new RestApiPlayground.Web.ApplicationModule());
+    containerBuilder.RegisterModule(new RestApiPlayground.API.ApplicationModule());
 });
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

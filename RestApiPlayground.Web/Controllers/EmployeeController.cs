@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using RestApiPlayground.Domain.Contracts;
-using RestApiPlayground.Service.Services;
+using RestApiPlayground.Application.Services;
 
-namespace RestApiPlayground.Web.Controllers
+namespace RestApiPlayground.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]

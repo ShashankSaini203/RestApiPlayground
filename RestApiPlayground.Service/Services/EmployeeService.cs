@@ -1,7 +1,7 @@
 ﻿using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Interfaces;
 
-namespace RestApiPlayground.Service.Services
+namespace RestApiPlayground.Application.Services
 {
     public class EmployeeService : IEmployeeService
     {
