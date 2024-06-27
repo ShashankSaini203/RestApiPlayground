@@ -45,7 +45,7 @@ namespace RestApiPlayground.API.Controllers
                 return BadRequest("Invalid employee details.");
             }
 
-            await _employeeService.AddAsync(employee);
+            await _employeeService.CreateAsync(employee);
             return Ok();
         }
 

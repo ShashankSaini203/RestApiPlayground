@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using RestApiPlayground.Domain.Interfaces;
+using RestApiPlayground.Domain.Repositories;
 using RestApiPlayground.Infrastructure.Repositories;
 using RestApiPlayground.Application.Services;
 

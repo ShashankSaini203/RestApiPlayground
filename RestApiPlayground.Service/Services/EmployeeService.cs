@@ -22,9 +22,9 @@ namespace RestApiPlayground.Application.Services
             return _employeeRepository.GetByIdAsync(id);
         }
 
-        public Task AddAsync(Employee employee)
+        public Task CreateAsync(Employee employee)
         {
-            return _employeeRepository.AddAsync(employee);
+            return _employeeRepository.CreateAsync(employee);
         }
 
         public Task UpdateAsync(Employee employee)

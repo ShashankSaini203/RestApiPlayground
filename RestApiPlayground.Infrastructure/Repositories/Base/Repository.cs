@@ -1,34 +1,46 @@
-﻿using RestApiPlayground.Domain.Repositories.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using RestApiPlayground.Domain.Repositories.Base;
+using RestApiPlayground.Infrastructure.Data;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Base
 {
     public class Repository<T> : IRepository<T> where T : class
     {
+        private readonly DataContext _dataContext;
 
-
-        public Task<T> CreateAsync(T entity)
+        public Repository(DataContext dataContext)
         {
-            throw new NotImplementedException();
+            _dataContext = dataContext;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dataContext.Set<T>().ToListAsync();
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<T> CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _dataContext.Set<T>().AddAsync(entity);
+            await _dataContext.SaveChangesAsync();
+            return entity;
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _dataContext.Set<T>().Update(entity);
+            await _dataContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var entity = await _dataContext.Set<T>().FindAsync(id);
+
+            if (entity != null)
+            {
+                _dataContext.Set<T>().Remove(entity);
+                await _dataContext.SaveChangesAsync();
+
+            }
         }
     }
 }
