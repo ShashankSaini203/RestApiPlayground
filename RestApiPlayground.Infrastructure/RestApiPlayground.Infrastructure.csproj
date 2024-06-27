@@ -19,4 +19,8 @@
     <ProjectReference Include="..\RestApiPlayground.Domain\RestApiPlayground.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\SQLiteDB\" />
+  </ItemGroup>
+
 </Project>
