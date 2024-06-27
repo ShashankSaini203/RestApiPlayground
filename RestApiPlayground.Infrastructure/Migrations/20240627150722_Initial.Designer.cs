@@ -10,7 +10,7 @@ using RestApiPlayground.Infrastructure.Data;
 namespace RestApiPlayground.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240627141938_Initial")]
+    [Migration("20240627150722_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

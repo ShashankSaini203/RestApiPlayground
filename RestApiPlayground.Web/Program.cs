@@ -22,7 +22,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options =>
     {
         options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-        options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     });
 
 var app = builder.Build();

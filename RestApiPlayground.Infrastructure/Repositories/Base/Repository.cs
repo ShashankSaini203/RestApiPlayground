@@ -15,6 +15,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Base
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
+            _dataContext.Set<T>().AsNoTracking();
             return await _dataContext.Set<T>().ToListAsync();
         }
 

@@ -1,4 +1,5 @@
-﻿using RestApiPlayground.Domain.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories;
 using RestApiPlayground.Infrastructure.Data;
 using RestApiPlayground.Infrastructure.Repositories.Base;
@@ -13,6 +14,10 @@ namespace RestApiPlayground.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<Employee> GetByIdAsync(int id) => await _dataContext.Set<Employee>().FindAsync(id);
+        public async Task<Employee> GetByIdAsync(int id)
+        {
+            _dataContext.Set<Employee>().AsNoTracking();
+            return await _dataContext.Set<Employee>().FindAsync(id);
+        }
     }
 }
