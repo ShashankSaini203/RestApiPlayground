@@ -1,5 +1,5 @@
 ﻿using RestApiPlayground.Domain.Contracts;
-using RestApiPlayground.Domain.Interfaces;
+using RestApiPlayground.Domain.Repositories;
 
 namespace RestApiPlayground.Application.Services
 {
@@ -10,7 +10,7 @@ namespace RestApiPlayground.Application.Services
         public EmployeeService(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
-        }
+        }   
 
         public Task<IEnumerable<Employee>> GetAllAsync()
         {

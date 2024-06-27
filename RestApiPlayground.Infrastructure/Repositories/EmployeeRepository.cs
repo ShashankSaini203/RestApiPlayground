@@ -1,9 +1,10 @@
 ﻿using RestApiPlayground.Domain.Contracts;
-using RestApiPlayground.Domain.Interfaces;
+using RestApiPlayground.Domain.Repositories;
+using RestApiPlayground.Infrastructure.Repositories.Base;
 
 namespace RestApiPlayground.Infrastructure.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
         private readonly List<Employee> _employees = new List<Employee>
     {
