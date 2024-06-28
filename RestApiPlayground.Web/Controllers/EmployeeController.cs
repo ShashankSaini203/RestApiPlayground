@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Application.Services;
+using RestApiPlayground.Application.Commands;
+using MediatR;
+using RestApiPlayground.Application.Responses;
 
 namespace RestApiPlayground.API.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class EmployeeController : ControllerBase
+    public class EmployeeController : BaseController
     {
         private readonly IEmployeeService _employeeService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService, IMediator mediator) : base(mediator)
         {
             _employeeService = employeeService;
         }
@@ -38,15 +39,15 @@ namespace RestApiPlayground.API.Controllers
         }
 
         [HttpPost("createEmployee")]
-        public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
+        public async Task<ActionResult<EmployeeResponse>> CreateEmployee([FromBody] CreateEmployeeCommand employee)
         {
             if (employee is null || !ModelState.IsValid)
             {
                 return BadRequest("Invalid employee details.");
             }
 
-            await _employeeService.CreateAsync(employee);
-            return Ok();
+            var result = await _mediator.Send(employee);
+            return Ok(result);
         }
 
         [HttpPut("updateEmployee")]
