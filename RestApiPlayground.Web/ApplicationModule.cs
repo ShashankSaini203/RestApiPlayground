@@ -7,6 +7,8 @@ using RestApiPlayground.Infrastructure.Data;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using RestApiPlayground.Application.Handlers.CommandHandler;
+using RestApiPlayground.Application.Commands;
+using RestApiPlayground.Application.Responses;
 
 namespace RestApiPlayground.API
 {
@@ -22,7 +24,7 @@ namespace RestApiPlayground.API
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 
-            builder.RegisterType<CreateEmployeeHandler>().AsImplementedInterfaces().InstancePerDependency();
+            builder.RegisterType<CreateEmployeeHandler>().As<IRequestHandler<CreateEmployeeCommand, EmployeeResponse>>().InstancePerLifetimeScope();
 
             builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>().InstancePerLifetimeScope();
 

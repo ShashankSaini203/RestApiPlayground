@@ -1,18 +1,17 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Application.Responses;
 using RestApiPlayground.Domain.Contracts;
-using RestApiPlayground.Infrastructure.Repositories;
+using RestApiPlayground.Domain.Repositories;
 
 namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
     public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, EmployeeResponse>
     {
-        private EmployeeRepository _employeeRepository;
+        private IEmployeeRepository _employeeRepository;
 
-        public CreateEmployeeHandler(EmployeeRepository employeeRepository)
+        public CreateEmployeeHandler(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
