@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RestApiPlayground.Application\RestApiPlayground.Application.csproj" />
     <ProjectReference Include="..\RestApiPlayground.Domain\RestApiPlayground.Domain.csproj" />
     <ProjectReference Include="..\RestApiPlayground.Infrastructure\RestApiPlayground.Infrastructure.csproj" />
-    <ProjectReference Include="..\RestApiPlayground.Service\RestApiPlayground.Application.csproj" />
   </ItemGroup>
 
 </Project>
