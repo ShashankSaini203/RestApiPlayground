@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Application.Responses;
 using RestApiPlayground.Domain.Repositories;
@@ -20,7 +21,8 @@ namespace RestApiPlayground.Application.Handlers.QueryHandler
         }
         public async Task<IEnumerable<EmployeeResponse>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var allEmployees = await _employeeRepository.GetAllAsync();
+            return EmployeeMapper.Mapper.Map<IEnumerable<EmployeeResponse>>(allEmployees);
         }
     }
 }
