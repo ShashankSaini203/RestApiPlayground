@@ -1,14 +1,14 @@
 ﻿using Autofac;
+using MediatR;
 using RestApiPlayground.Domain.Repositories;
 using RestApiPlayground.Infrastructure.Repositories;
-using RestApiPlayground.Application.Services;
-using Microsoft.EntityFrameworkCore;
 using RestApiPlayground.Infrastructure.Data;
-using MediatR;
-using Microsoft.AspNetCore.Hosting;
-using RestApiPlayground.Application.Handlers.CommandHandler;
 using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Responses;
+using RestApiPlayground.Application.Queries;
+using RestApiPlayground.Application.Services;
+using RestApiPlayground.Application.Handlers.QueryHandler;
+using RestApiPlayground.Application.Handlers.CommandHandler;
 
 namespace RestApiPlayground.API
 {
@@ -28,6 +28,9 @@ namespace RestApiPlayground.API
 
             builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>().InstancePerLifetimeScope();
 
+            builder.RegisterType<GetAllEmployeesHandler>().As<IRequestHandler<GetAllEmployeesQuery, IEnumerable<EmployeeResponse>>>().InstancePerLifetimeScope();
+
+            builder.RegisterType<GetEmployeeByIdHandler>().As<IRequestHandler<GetEmployeeByIdQuery, EmployeeResponse>>().InstancePerLifetimeScope();
         }
     }
 }

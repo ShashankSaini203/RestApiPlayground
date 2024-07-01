@@ -18,16 +18,18 @@ namespace RestApiPlayground.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(GetEmployeeByIdQuery EmployeeId)
+        public async Task<ActionResult<EmployeeResponse>> GetById(long id)
         {
-            if(EmployeeId is null || EmployeeId.Id < 0)
+            //It wraps the data in an ActionResult and uses the Ok method to return a 200 OK response along with the data. This method allows more flexibility in returning different HTTP status codes.
+            if (id <= 0)
             {
-                return BadRequest("Invalid data provided.");
+                return BadRequest("Invalid Id provided. It cannot be negative or zero.");
             }
 
-            var employeeData= _mediator.Send(EmployeeId);
+            var getEmployeeByIdQuery = new GetEmployeeByIdQuery(id);
+            var employeeData = await _mediator.Send(getEmployeeByIdQuery);
 
-            if(employeeData == null)
+            if (employeeData is null)
             {
                 return NotFound("Could not find employee with provided ID");
             }
@@ -36,9 +38,11 @@ namespace RestApiPlayground.API.Controllers
         }
 
         [HttpGet("getAllEmployees")]
-        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployees()
         {
-            return await _employeeService.GetAllAsync();
+            var query = new GetAllEmployeesQuery();
+
+            return Ok(await _mediator.Send(query));
         }
 
         [HttpPost("createEmployee")]
@@ -56,7 +60,7 @@ namespace RestApiPlayground.API.Controllers
         [HttpPut("updateEmployee")]
         public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
         {
-            if(employee is null || !ModelState.IsValid)
+            if (employee is null || !ModelState.IsValid)
             {
                 return BadRequest("Invalid employee details.");
             }
