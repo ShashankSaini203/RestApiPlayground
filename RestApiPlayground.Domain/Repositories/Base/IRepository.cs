@@ -8,6 +8,6 @@
 
         Task UpdateAsync(T entity);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(long id);
     }
 }

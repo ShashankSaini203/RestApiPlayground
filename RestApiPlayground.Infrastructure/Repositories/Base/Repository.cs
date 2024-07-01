@@ -32,7 +32,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Base
             await _dataContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(long id)
         {
             var entity = await _dataContext.Set<T>().FindAsync(id);
 

@@ -14,7 +14,7 @@ namespace RestApiPlayground.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<Employee> GetByIdAsync(int id)
+        public async Task<Employee> GetByIdAsync(long id)
         {
             _dataContext.Set<Employee>().AsNoTracking();
             return await _dataContext.Set<Employee>().FindAsync(id);

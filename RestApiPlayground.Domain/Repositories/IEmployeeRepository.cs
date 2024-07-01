@@ -5,6 +5,6 @@ namespace RestApiPlayground.Domain.Repositories
 {
     public interface IEmployeeRepository : IRepository<Employee>
     {
-        Task<Employee> GetByIdAsync(int id);
+        Task<Employee> GetByIdAsync(long id);
     }
 }

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using RestApiPlayground.Application.Responses;
 
 namespace RestApiPlayground.Application.Queries
 {
-    internal class GetEmployeeByIdQuery
+    public class GetEmployeeByIdQuery : IRequest<EmployeeResponse>
     {
+        public long Id { get; set; }
+
+        public GetEmployeeByIdQuery(long Id)
+        {
+            this.Id = Id;
+        }
     }
 }

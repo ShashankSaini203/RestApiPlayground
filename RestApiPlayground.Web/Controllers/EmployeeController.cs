@@ -4,6 +4,7 @@ using RestApiPlayground.Application.Services;
 using RestApiPlayground.Application.Commands;
 using MediatR;
 using RestApiPlayground.Application.Responses;
+using RestApiPlayground.Application.Queries;
 
 namespace RestApiPlayground.API.Controllers
 {
@@ -17,19 +18,21 @@ namespace RestApiPlayground.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(GetEmployeeByIdQuery EmployeeId)
         {
-            if(id < 0)
+            if(EmployeeId is null || EmployeeId.Id < 0)
             {
-                return BadRequest("ID is invalid. It cannot be negative.");
+                return BadRequest("Invalid data provided.");
             }
-            var employeeData= await _employeeService.GetByIdAsync(id);
+
+            var employeeData= _mediator.Send(EmployeeId);
 
             if(employeeData == null)
             {
                 return NotFound("Could not find employee with provided ID");
             }
-            return Ok(await _employeeService.GetByIdAsync(id));
+
+            return Ok(employeeData);
         }
 
         [HttpGet("getAllEmployees")]
@@ -46,8 +49,8 @@ namespace RestApiPlayground.API.Controllers
                 return BadRequest("Invalid employee details.");
             }
 
-            var result = await _mediator.Send(employee);
-            return Ok(result);
+            var employeeResult = await _mediator.Send(employee);
+            return Ok(employeeResult);
         }
 
         [HttpPut("updateEmployee")]
