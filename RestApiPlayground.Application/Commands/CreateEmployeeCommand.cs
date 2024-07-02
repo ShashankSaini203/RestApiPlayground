@@ -37,11 +37,11 @@ namespace RestApiPlayground.Application.Commands
         [NotPlaceholder("string", ErrorMessage = "Department cannot be 'string'.")]
         public string Address { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public CreateEmployeeCommand()
         {
-            this.CreatedDate = DateTime.Now;
+            this.CreationDate = DateTime.Now;
         }
     }
 }

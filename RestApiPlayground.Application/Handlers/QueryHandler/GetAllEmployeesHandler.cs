@@ -8,7 +8,7 @@ namespace RestApiPlayground.Application.Handlers.QueryHandler
 {
     public class GetAllEmployeesHandler : IRequestHandler<GetAllEmployeesQuery, IEnumerable<EmployeeResponse>>
     {
-        private IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
         public GetAllEmployeesHandler(IEmployeeRepository employeeRepository)
         {

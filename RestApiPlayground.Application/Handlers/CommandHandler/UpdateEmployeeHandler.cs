@@ -9,7 +9,7 @@ namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
     public class UpdateEmployeeHandler : IRequestHandler<UpdateEmployeeCommand, EmployeeResponse>
     {
-        private IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
         public UpdateEmployeeHandler(IEmployeeRepository employeeRepository)
         {

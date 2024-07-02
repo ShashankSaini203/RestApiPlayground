@@ -37,15 +37,10 @@ namespace RestApiPlayground.Infrastructure.Repositories.Base
             return entity;
         }
 
-        public async Task DeleteAsync(long id)
+        public async Task DeleteAsync(T entity)
         {
-            var entity = await _dataContext.Set<T>().FindAsync(id);
-
-            if (entity != null)
-            {
-                _dataContext.Set<T>().Remove(entity);
-                await _dataContext.SaveChangesAsync();
-            }
+            _dataContext.Set<T>().Remove(entity);
+            await _dataContext.SaveChangesAsync();
         }
     }
 }

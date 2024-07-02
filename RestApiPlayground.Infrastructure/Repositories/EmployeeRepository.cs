@@ -24,26 +24,25 @@ namespace RestApiPlayground.Infrastructure.Repositories
         public async Task<Employee> UpdateAsync(Employee employeeEntity)
         {
             var existingEmployee = await _dataContext.Set<Employee>().FindAsync(employeeEntity.Id);
-            
+
             if (existingEmployee is null)
             {
                 throw new KeyNotFoundException($"Employee not found. Please create a new employee with id : {employeeEntity.Id}");
             }
 
-            var updatedEmployee = new Employee()
-            {
-                FirstName = employeeEntity?.FirstName ?? existingEmployee.FirstName,
-                LastName = employeeEntity?.LastName ?? existingEmployee.LastName,
-                Address = employeeEntity?.Address ?? existingEmployee.Address,
-                Department = employeeEntity?.Department ?? existingEmployee.Department,
-                Email = employeeEntity?.Email ?? existingEmployee.Email,
-                ContactNumber = employeeEntity?.ContactNumber ?? existingEmployee.ContactNumber
-            };
+            existingEmployee.FirstName = employeeEntity?.FirstName ?? existingEmployee.FirstName;
+            existingEmployee.LastName = employeeEntity?.LastName ?? existingEmployee.LastName;
+            existingEmployee.Address = employeeEntity?.Address ?? existingEmployee.Address;
+            existingEmployee.Department = employeeEntity?.Department ?? existingEmployee.Department;
+            existingEmployee.Email = employeeEntity?.Email ?? existingEmployee.Email;
+            existingEmployee.ContactNumber = employeeEntity?.ContactNumber ?? existingEmployee.ContactNumber;
+            existingEmployee.ModifiedDate = employeeEntity.ModifiedDate;
 
-            _dataContext.Set<Employee>().Update(updatedEmployee);
+            _dataContext.Set<Employee>().Update(existingEmployee);
+            _dataContext.Entry(existingEmployee).State = EntityState.Modified;
             await _dataContext.SaveChangesAsync();
 
-            return await _dataContext.Set<Employee>().FindAsync(employeeEntity.Id);
+            return existingEmployee;
         }
     }
 }

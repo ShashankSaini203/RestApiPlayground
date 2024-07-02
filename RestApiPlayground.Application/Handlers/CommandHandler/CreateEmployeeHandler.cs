@@ -9,7 +9,7 @@ namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
     public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, EmployeeResponse>
     {
-        private IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
         public CreateEmployeeHandler(IEmployeeRepository employeeRepository)
         {
