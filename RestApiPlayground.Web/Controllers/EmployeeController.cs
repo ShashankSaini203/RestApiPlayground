@@ -49,6 +49,8 @@ namespace RestApiPlayground.API.Controllers
                 return BadRequest("Invalid employee details.");
             }
 
+            employee.CreationDate = DateTime.Now;
+
             var employeeResult = await _mediator.Send(employee);
             return Ok(employeeResult);
         }

@@ -39,9 +39,5 @@ namespace RestApiPlayground.Application.Commands
 
         public DateTime CreationDate { get; set; }
 
-        public CreateEmployeeCommand()
-        {
-            this.CreationDate = DateTime.Now;
-        }
     }
 }
