@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories.Base;
 using RestApiPlayground.Infrastructure.Data;
+using System.Linq.Expressions;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Base
 {
@@ -26,10 +28,30 @@ namespace RestApiPlayground.Infrastructure.Repositories.Base
             return entity;
         }
 
-        public async Task UpdateAsync(T entity)
+        //public async Task<T> UpdateAsync(T entity)
+        //{
+        //    _dataContext.Set<T>().Update(entity);
+        //    await _dataContext.SaveChangesAsync();
+
+        //    return entity;
+        //}
+
+        public async Task<T> UpdateAsync(int id, Dictionary<string, object> updatedProperties)
         {
-            _dataContext.Set<T>().Update(entity);
+            var entity = await _dataContext.Set<T>().FindAsync(id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException($"{typeof(T).Name} with id {id} not found.");
+            }
+
+            foreach (var property in updatedProperties)
+            {
+                _dataContext.Entry(entity).Property(property.Key).CurrentValue = property.Value;
+                _dataContext.Entry(entity).Property(property.Key).IsModified = true;
+            }
+
             await _dataContext.SaveChangesAsync();
+            return entity;
         }
 
         public async Task DeleteAsync(long id)
@@ -40,7 +62,6 @@ namespace RestApiPlayground.Infrastructure.Repositories.Base
             {
                 _dataContext.Set<T>().Remove(entity);
                 await _dataContext.SaveChangesAsync();
-
             }
         }
     }

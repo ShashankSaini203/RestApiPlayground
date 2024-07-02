@@ -9,6 +9,13 @@ namespace RestApiPlayground.Infrastructure.Data
         { 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.ModifiedDate)
+                .HasDefaultValueSql("GETDATE()"); 
+        }
+
         public DbSet<Employee> Employees { get; set; }
     }
 }

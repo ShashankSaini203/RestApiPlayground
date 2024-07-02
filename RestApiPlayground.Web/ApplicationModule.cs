@@ -31,6 +31,8 @@ namespace RestApiPlayground.API
             builder.RegisterType<GetAllEmployeesHandler>().As<IRequestHandler<GetAllEmployeesQuery, IEnumerable<EmployeeResponse>>>().InstancePerLifetimeScope();
 
             builder.RegisterType<GetEmployeeByIdHandler>().As<IRequestHandler<GetEmployeeByIdQuery, EmployeeResponse>>().InstancePerLifetimeScope();
+
+            builder.RegisterType<UpdateEmployeeHandler>().As<IRequestHandler<UpdateEmployeeCommand, EmployeeResponse>>().InstancePerLifetimeScope();
         }
     }
 }

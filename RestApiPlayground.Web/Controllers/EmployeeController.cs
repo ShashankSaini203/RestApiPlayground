@@ -58,15 +58,16 @@ namespace RestApiPlayground.API.Controllers
         }
 
         [HttpPut("updateEmployee")]
-        public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
+        public async Task<ActionResult<EmployeeResponse>> UpdateEmployee([FromBody] UpdateEmployeeCommand employee)
         {
             if (employee is null || !ModelState.IsValid)
             {
                 return BadRequest("Invalid employee details.");
             }
 
-            await _employeeService.UpdateAsync(employee);
-            return Ok($"Employee with id {employee.Id} was updated successfully");
+            var updatedEmployeeResult = await _mediator.Send(employee);
+
+            return Ok(updatedEmployeeResult);
         }
     }
 }

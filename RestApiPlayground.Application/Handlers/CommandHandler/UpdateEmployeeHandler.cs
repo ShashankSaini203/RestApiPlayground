@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using RestApiPlayground.Application.Commands;
+using RestApiPlayground.Application.Mappers;
+using RestApiPlayground.Application.Responses;
+using RestApiPlayground.Domain.Contracts;
+using RestApiPlayground.Domain.Repositories;
 
 namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
-    internal class UpdateEmployeeHandler
+    public class UpdateEmployeeHandler : IRequestHandler<UpdateEmployeeCommand, EmployeeResponse>
     {
+        private IEmployeeRepository _employeeRepository;
+
+        public UpdateEmployeeHandler(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
+        public async Task<EmployeeResponse> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
+        {
+            var mappedEmployee = EmployeeMapper.Mapper.Map<Employee>(request);
+
+            var updatedEmployeeResult = await _employeeRepository.UpdateAsync(mappedEmployee);
+
+            return EmployeeMapper.Mapper.Map<EmployeeResponse>(updatedEmployeeResult);
+        }
     }
 }
