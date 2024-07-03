@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories.Base;
 using RestApiPlayground.Infrastructure.Data;
-using System.Linq.Expressions;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Base
 {
