@@ -1,10 +1,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
-using RestApiPlayground.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using RestApiPlayground.Infrastructure.Data;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

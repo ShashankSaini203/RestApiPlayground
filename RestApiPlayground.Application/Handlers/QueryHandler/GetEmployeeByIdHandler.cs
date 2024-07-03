@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Application.Responses;
