@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Data\SQLiteDB\" />
-    <Folder Include="Repositories\Query\Base\" />
   </ItemGroup>
 
 </Project>

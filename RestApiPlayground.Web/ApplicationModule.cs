@@ -15,7 +15,7 @@ namespace RestApiPlayground.API
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<EmployeeCommandRepository>().As<IEmployeeRepository>().InstancePerLifetimeScope();
 
             builder.RegisterType<DataContext>().AsSelf().InstancePerLifetimeScope();
 

@@ -6,11 +6,11 @@ using RestApiPlayground.Infrastructure.Repositories.Command.Base;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Command
 {
-    public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
+    public class EmployeeCommandRepository : CommandRepository<Employee>, IEmployeeRepository
     {
         private readonly DataContext _dataContext;
 
-        public EmployeeRepository(DataContext dataContext) : base(dataContext)
+        public EmployeeCommandRepository(DataContext dataContext) : base(dataContext)
         {
             _dataContext = dataContext;
         }

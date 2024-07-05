@@ -4,11 +4,11 @@ using RestApiPlayground.Infrastructure.Data;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Command.Base
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class CommandRepository<T> : IRepository<T> where T : class
     {
         private readonly DataContext _dataContext;
 
-        public Repository(DataContext dataContext)
+        public CommandRepository(DataContext dataContext)
         {
             _dataContext = dataContext;
         }
