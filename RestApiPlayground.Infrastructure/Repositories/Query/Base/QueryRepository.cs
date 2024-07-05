@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using RestApiPlayground.Domain.Repositories.Query.Base;
 using RestApiPlayground.Infrastructure.Data;
 
@@ -10,7 +11,19 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query.Base
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return null;
+            try
+            {
+                var query = "SELECT * FROM EMPLOYEE";
+
+                using (var connection = CreateConnection())
+                {
+                    return (await connection.QueryAsync<T>(query)).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
         }
     }
 }

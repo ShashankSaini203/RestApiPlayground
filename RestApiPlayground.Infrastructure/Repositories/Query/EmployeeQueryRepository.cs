@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories.Query;
 using RestApiPlayground.Infrastructure.Repositories.Query.Base;
+using System.Data;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Query
 {
@@ -9,9 +11,26 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query
     {
         public EmployeeQueryRepository(IConfiguration configuration) : base(configuration) { }
 
-        public Task<Employee> GetEmployeeByIdAsync(long id)
+        public async Task<Employee> GetEmployeeByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var query = "SELECT * FROM EMPLOYEE WHERE ID = @Id";
+
+                var parameters = new DynamicParameters();
+                parameters.Add("Id", id, DbType.Int64);
+
+                using (var connection = CreateConnection())
+                {
+                    return await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
         }
     }
 }
