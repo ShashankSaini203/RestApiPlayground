@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RestApiPlayground.Domain.Repositories.Query.Base
+﻿namespace RestApiPlayground.Domain.Repositories.Query.Base
 {
-    internal class IQueryRepository
+    public interface IQueryRepository<T> where T : class
     {
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }

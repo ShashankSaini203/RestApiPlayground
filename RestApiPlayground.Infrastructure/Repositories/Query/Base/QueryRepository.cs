@@ -1,16 +1,16 @@
-﻿using RestApiPlayground.Infrastructure.Data;
-using System;
+﻿using Microsoft.Extensions.Configuration;
+using RestApiPlayground.Domain.Repositories.Query.Base;
+using RestApiPlayground.Infrastructure.Data;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Query.Base
 {
-    public class QueryRepository
+    public class QueryRepository<T> : DbConnector, IQueryRepository<T> where T : class
     {
-
+        public QueryRepository(IConfiguration configuration) : base(configuration) { }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            _dataContext.Set<T>().AsNoTracking();
-            return await _dataContext.Set<T>().ToListAsync();
+            return null;
         }
     }
 }

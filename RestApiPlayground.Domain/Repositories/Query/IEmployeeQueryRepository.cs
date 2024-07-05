@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RestApiPlayground.Domain.Contracts;
+using RestApiPlayground.Domain.Repositories.Query.Base;
 
 namespace RestApiPlayground.Domain.Repositories.Query
 {
-    internal class IEmployeeQueryRepository
+    public interface IEmployeeQueryRepository : IQueryRepository<Employee>
     {
+        Task<Employee> GetEmployeeByIdAsync(long id);
     }
 }
