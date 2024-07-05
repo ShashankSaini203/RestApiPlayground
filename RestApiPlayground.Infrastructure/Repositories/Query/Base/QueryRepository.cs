@@ -13,7 +13,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query.Base
         {
             try
             {
-                var query = "SELECT * FROM EMPLOYEE";
+                var query = "SELECT * FROM EMPLOYEES";
 
                 using (var connection = CreateConnection())
                 {

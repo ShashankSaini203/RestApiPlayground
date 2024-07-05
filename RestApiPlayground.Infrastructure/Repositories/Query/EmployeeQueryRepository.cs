@@ -15,7 +15,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query
         {
             try
             {
-                var query = "SELECT * FROM EMPLOYEE WHERE ID = @Id";
+                var query = "SELECT * FROM EMPLOYEES WHERE ID = @Id";
 
                 var parameters = new DynamicParameters();
                 parameters.Add("Id", id, DbType.Int64);
