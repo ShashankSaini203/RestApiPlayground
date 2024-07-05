@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestApiPlayground.Domain.Contracts;
-using RestApiPlayground.Domain.Repositories;
+using RestApiPlayground.Domain.Repositories.Command;
 using RestApiPlayground.Infrastructure.Data;
 using RestApiPlayground.Infrastructure.Repositories.Command.Base;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Command
 {
-    public class EmployeeCommandRepository : CommandRepository<Employee>, IEmployeeRepository
+    public class EmployeeCommandRepository : CommandRepository<Employee>, IEmployeeCommandRepository
     {
         private readonly DataContext _dataContext;
 

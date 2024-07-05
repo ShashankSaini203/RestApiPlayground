@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using MediatR;
-using RestApiPlayground.Domain.Repositories;
 using RestApiPlayground.Infrastructure.Data;
 using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Responses;
@@ -8,6 +7,7 @@ using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Application.Handlers.QueryHandler;
 using RestApiPlayground.Application.Handlers.CommandHandler;
 using RestApiPlayground.Infrastructure.Repositories.Command;
+using RestApiPlayground.Domain.Repositories.Command;
 
 namespace RestApiPlayground.API
 {

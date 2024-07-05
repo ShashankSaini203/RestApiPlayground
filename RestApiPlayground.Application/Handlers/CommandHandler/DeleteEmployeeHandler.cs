@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using RestApiPlayground.Application.Commands;
-using RestApiPlayground.Domain.Repositories;
+using RestApiPlayground.Domain.Repositories.Command;
 
 namespace RestApiPlayground.Application.Handlers.CommandHandler
 {

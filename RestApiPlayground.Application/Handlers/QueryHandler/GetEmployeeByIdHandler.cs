@@ -2,7 +2,7 @@
 using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Application.Responses;
-using RestApiPlayground.Domain.Repositories;
+using RestApiPlayground.Domain.Repositories.Command;
 
 namespace RestApiPlayground.Application.Handlers.QueryHandler
 {

@@ -3,7 +3,7 @@ using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Application.Responses;
 using RestApiPlayground.Domain.Contracts;
-using RestApiPlayground.Domain.Repositories;
+using RestApiPlayground.Domain.Repositories.Command;
 
 namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
