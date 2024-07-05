@@ -5,6 +5,6 @@ namespace RestApiPlayground.Domain.Repositories.Query
 {
     public interface IEmployeeQueryRepository : IQueryRepository<Employee>
     {
-        Task<Employee> GetEmployeeByIdAsync(long id);
+        Task<Employee> GetByIdAsync(long id);
     }
 }

@@ -3,20 +3,22 @@ using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Application.Responses;
 using RestApiPlayground.Domain.Repositories.Command;
+using RestApiPlayground.Domain.Repositories.Query;
+using RestApiPlayground.Infrastructure.Repositories.Query;
 
 namespace RestApiPlayground.Application.Handlers.QueryHandler
 {
     public class GetEmployeeByIdHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeResponse>
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeQueryRepository _employeeQueryRepository;
 
-        public GetEmployeeByIdHandler(IEmployeeRepository employeeRepository)
+        public GetEmployeeByIdHandler(IEmployeeQueryRepository employeeQueryRepository)
         {
-            _employeeRepository = employeeRepository;
+            _employeeQueryRepository = employeeQueryRepository;
         }
         public async Task<EmployeeResponse> Handle(GetEmployeeByIdQuery request, CancellationToken cancellationToken)
         {
-            var result = await _employeeRepository.GetByIdAsync(request.Id);
+            var result = await _employeeQueryRepository.GetByIdAsync(request.Id);
 
             return EmployeeMapper.Mapper.Map<EmployeeResponse>(result);
         }

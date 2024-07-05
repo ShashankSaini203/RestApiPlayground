@@ -6,25 +6,25 @@ namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
     public class DeleteEmployeeHandler : IRequestHandler<DeleteEmployeeCommand, string>
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeCommandRepository _employeeCommandRepository;
 
-        public DeleteEmployeeHandler(IEmployeeRepository employeeRepository)
+        public DeleteEmployeeHandler(IEmployeeCommandRepository employeeCommandRepository)
         {
-            _employeeRepository = employeeRepository;
+            _employeeCommandRepository = employeeCommandRepository;
         }
-        
+
         public async Task<string> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
         {
-            var employeeToDelete = await _employeeRepository.GetByIdAsync(request.Id);
+            var employeeToDelete = await _employeeCommandRepository.GetByIdAsync(request.Id);
 
             if (employeeToDelete is null)
             {
-                throw new KeyNotFoundException("Employee does not exist."); 
+                throw new KeyNotFoundException("Employee does not exist.");
             }
 
-            await _employeeRepository.DeleteAsync(employeeToDelete);
+            await _employeeCommandRepository.DeleteAsync(employeeToDelete);
 
-            return "Employee has been deleted!"; 
+            return "Employee has been deleted!";
         }
     }
 }

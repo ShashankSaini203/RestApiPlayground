@@ -11,7 +11,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query
     {
         public EmployeeQueryRepository(IConfiguration configuration) : base(configuration) { }
 
-        public async Task<Employee> GetEmployeeByIdAsync(long id)
+        public async Task<Employee> GetByIdAsync(long id)
         {
             try
             {

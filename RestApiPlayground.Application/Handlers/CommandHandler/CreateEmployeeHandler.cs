@@ -9,11 +9,11 @@ namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
     public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, EmployeeResponse>
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeCommandRepository _employeeCommandRepository;
 
-        public CreateEmployeeHandler(IEmployeeRepository employeeRepository)
+        public CreateEmployeeHandler(IEmployeeCommandRepository employeeCommandRepository)
         {
-            _employeeRepository = employeeRepository;
+            _employeeCommandRepository = employeeCommandRepository;
         }
 
         public async Task<EmployeeResponse> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
@@ -25,7 +25,7 @@ namespace RestApiPlayground.Application.Handlers.CommandHandler
                 throw new ApplicationException("Unable to map due to an issue with mapper.");
             }
 
-            var resultEmployeeEntity = await _employeeRepository.CreateAsync(employeeEntity);
+            var resultEmployeeEntity = await _employeeCommandRepository.CreateAsync(employeeEntity);
             return EmployeeMapper.Mapper.Map<EmployeeResponse>(resultEmployeeEntity);
 
         }

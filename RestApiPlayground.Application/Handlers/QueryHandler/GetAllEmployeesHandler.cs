@@ -2,21 +2,21 @@
 using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Application.Responses;
-using RestApiPlayground.Domain.Repositories.Command;
+using RestApiPlayground.Domain.Repositories.Query;
 
 namespace RestApiPlayground.Application.Handlers.QueryHandler
 {
     public class GetAllEmployeesHandler : IRequestHandler<GetAllEmployeesQuery, IEnumerable<EmployeeResponse>>
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeQueryRepository _employeeQueryRepository;
 
-        public GetAllEmployeesHandler(IEmployeeRepository employeeRepository)
+        public GetAllEmployeesHandler(IEmployeeQueryRepository employeeQueryRepository)
         {
-            _employeeRepository = employeeRepository;
+            _employeeQueryRepository = employeeQueryRepository;
         }
         public async Task<IEnumerable<EmployeeResponse>> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
         {
-            var allEmployees = await _employeeRepository.GetAllAsync();
+            var allEmployees = await _employeeQueryRepository.GetAllAsync();
             return EmployeeMapper.Mapper.Map<IEnumerable<EmployeeResponse>>(allEmployees);
         }
     }
