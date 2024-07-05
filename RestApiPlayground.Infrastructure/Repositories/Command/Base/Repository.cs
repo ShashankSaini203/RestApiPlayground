@@ -2,7 +2,7 @@
 using RestApiPlayground.Domain.Repositories.Base;
 using RestApiPlayground.Infrastructure.Data;
 
-namespace RestApiPlayground.Infrastructure.Repositories.Base
+namespace RestApiPlayground.Infrastructure.Repositories.Command.Base
 {
     public class Repository<T> : IRepository<T> where T : class
     {

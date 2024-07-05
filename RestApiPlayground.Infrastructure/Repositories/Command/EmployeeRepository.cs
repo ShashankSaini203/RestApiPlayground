@@ -2,9 +2,9 @@
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories;
 using RestApiPlayground.Infrastructure.Data;
-using RestApiPlayground.Infrastructure.Repositories.Base;
+using RestApiPlayground.Infrastructure.Repositories.Command.Base;
 
-namespace RestApiPlayground.Infrastructure.Repositories
+namespace RestApiPlayground.Infrastructure.Repositories.Command
 {
     public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
