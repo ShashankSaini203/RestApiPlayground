@@ -20,7 +20,7 @@ namespace RestApiPlayground.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeResponse>> GetById(long id)
         {
-            //It wraps the data in an ActionResult and uses the Ok method to return a 200 OK response along with the data. This method allows more flexibility in returning different HTTP status codes.
+            //ActionResult: It wraps the data in an ActionResult and uses the Ok method to return a 200 OK response along with the data. This method allows more flexibility in returning different HTTP status codes.
             if (id <= 0)
             {
                 return BadRequest("Invalid Id provided. It cannot be negative or zero.");
@@ -48,6 +48,7 @@ namespace RestApiPlayground.API.Controllers
         [HttpPost("CreateEmployee")]
         public async Task<ActionResult<EmployeeResponse>> CreateEmployee([FromBody] CreateEmployeeCommand employee)
         {
+            //FluentValidation + ModelState Validation
             if (employee is not null)
             {
                 var result = await _createEmployeeValidator.ValidateAsync(employee);
@@ -65,6 +66,7 @@ namespace RestApiPlayground.API.Controllers
         [HttpPut("UpdateEmployee")]
         public async Task<ActionResult<EmployeeResponse>> UpdateEmployee([FromBody] UpdateEmployeeCommand employee)
         {
+            //Only ModelState Validation
             if (employee is null || !ModelState.IsValid)
             {
                 return BadRequest("Invalid employee details.");
