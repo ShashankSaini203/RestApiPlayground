@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using RestApiPlayground.Domain.Contracts;
+using RestApiPlayground.Application.Commands;
 
 namespace RestApiPlayground.Application.Validators
 {
-    public class EmployeeValidator : AbstractValidator<Employee>
+    public class CreateEmployeeValidator : AbstractValidator<CreateEmployeeCommand>
     {
-        public EmployeeValidator()
+        public CreateEmployeeValidator()
         {
             //firstName
             RuleFor(x => x.FirstName).NotEmpty().WithMessage("First Name is required.")
@@ -38,7 +38,6 @@ namespace RestApiPlayground.Application.Validators
             {
                 RuleFor(x => x.Address).MaximumLength(50).WithMessage("Address cannot be longer than 50 characters.");
             });
-
         }
     }
 }

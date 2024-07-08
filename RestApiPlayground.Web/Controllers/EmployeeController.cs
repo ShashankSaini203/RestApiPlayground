@@ -4,13 +4,17 @@ using RestApiPlayground.Application.Commands;
 using MediatR;
 using RestApiPlayground.Application.Responses;
 using RestApiPlayground.Application.Queries;
+using System;
+using FluentValidation;
 
 namespace RestApiPlayground.API.Controllers
 {
     public class EmployeeController : BaseController
     {
-        public EmployeeController(IMediator mediator) : base(mediator)
+        private readonly IValidator<CreateEmployeeCommand> _createEmployeeValidator;
+        public EmployeeController(IMediator mediator, IValidator<CreateEmployeeCommand> createEmployeeValidator) : base(mediator)
         {
+            _createEmployeeValidator = createEmployeeValidator;
         }
 
         [HttpGet("{id}")]
@@ -44,9 +48,14 @@ namespace RestApiPlayground.API.Controllers
         [HttpPost("CreateEmployee")]
         public async Task<ActionResult<EmployeeResponse>> CreateEmployee([FromBody] CreateEmployeeCommand employee)
         {
-            if (employee is null || !ModelState.IsValid)
+            if (employee is not null)
             {
-                return BadRequest("Invalid employee details.");
+                var result = await _createEmployeeValidator.ValidateAsync(employee);
+
+                if (!result.IsValid || !ModelState.IsValid)
+                {
+                    return BadRequest("Invalid employee details.");
+                }
             }
 
             var employeeResult = await _mediator.Send(employee);

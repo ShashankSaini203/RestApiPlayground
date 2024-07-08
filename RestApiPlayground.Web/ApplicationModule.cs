@@ -10,6 +10,8 @@ using RestApiPlayground.Infrastructure.Repositories.Command;
 using RestApiPlayground.Domain.Repositories.Command;
 using RestApiPlayground.Infrastructure.Repositories.Query;
 using RestApiPlayground.Domain.Repositories.Query;
+using RestApiPlayground.Application.Validators;
+using FluentValidation;
 
 namespace RestApiPlayground.API
 {
@@ -36,6 +38,10 @@ namespace RestApiPlayground.API
             builder.RegisterType<UpdateEmployeeHandler>().As<IRequestHandler<UpdateEmployeeCommand, EmployeeResponse>>().InstancePerLifetimeScope();
 
             builder.RegisterType<DeleteEmployeeHandler>().As<IRequestHandler<DeleteEmployeeCommand, string>>().InstancePerLifetimeScope();
+            #endregion
+
+            #region validators
+            builder.RegisterType<CreateEmployeeValidator>().As<IValidator<CreateEmployeeCommand>>().InstancePerLifetimeScope();
             #endregion
         }
     }
