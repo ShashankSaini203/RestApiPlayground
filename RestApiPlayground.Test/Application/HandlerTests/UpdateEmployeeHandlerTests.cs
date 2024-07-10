@@ -41,6 +41,7 @@ namespace RestApiPlayground.Test.Application.HandlerTests
 
             //Act
 
+            var result = _updateEmployeeHandler.Handle(updateCommand, CancellationToken.None);
 
             //Assert
 
