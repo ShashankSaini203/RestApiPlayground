@@ -4,7 +4,6 @@ using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Handlers.CommandHandler;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories.Command;
-using RestApiPlayground.Infrastructure.Repositories.Command;
 
 namespace RestApiPlayground.Test.Application.HandlerTests
 {
@@ -54,8 +53,6 @@ namespace RestApiPlayground.Test.Application.HandlerTests
             Assert.That(result.Email, Is.EqualTo(updateEmployeeCommand.Email));
             Assert.That(result.ContactNumber, Is.EqualTo(updateEmployeeCommand.ContactNumber));
             Assert.That(result.ModifiedDate, Is.EqualTo(updateEmployeeCommand.ModifiedDate));
-
-
         }
     }
 }
