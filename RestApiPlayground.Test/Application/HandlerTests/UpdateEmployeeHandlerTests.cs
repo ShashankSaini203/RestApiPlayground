@@ -21,7 +21,7 @@ namespace RestApiPlayground.Test.Application.HandlerTests
         }
 
         [Test]
-        public async Task UpdateEmployeeCommand_Valid_UpdateEmployee()
+        public async Task UpdateEmployeeHandler_ValidCommand_ShouldUpdateEmployee()
         {
             throw new NotImplementedException();
         }
