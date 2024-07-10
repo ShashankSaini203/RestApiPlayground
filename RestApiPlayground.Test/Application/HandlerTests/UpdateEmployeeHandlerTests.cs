@@ -26,7 +26,7 @@ namespace RestApiPlayground.Test.Application.HandlerTests
         public async Task UpdateEmployeeHandler_ValidCommand_ShouldUpdateAndReturnUpdatedEmployee()
         {
             //Arrange
-            var updateCommand = new UpdateEmployeeCommand()
+            var updateEmployeeCommand = new UpdateEmployeeCommand()
             {
                 Id = 11,
                 FirstName = "Monkey D",
@@ -41,9 +41,20 @@ namespace RestApiPlayground.Test.Application.HandlerTests
 
             //Act
 
-            var result = _updateEmployeeHandler.Handle(updateCommand, CancellationToken.None);
+            var result = await _updateEmployeeHandler.Handle(updateEmployeeCommand, CancellationToken.None);
 
             //Assert
+
+            Assert.IsNotNull(result);
+            Assert.NotNull(result);
+            Assert.That(result.FirstName, Is.EqualTo(updateEmployeeCommand.FirstName));
+            Assert.That(result.LastName, Is.EqualTo(updateEmployeeCommand.LastName));
+            Assert.That(result.Department, Is.EqualTo(updateEmployeeCommand.Department));
+            Assert.That(result.Address, Is.EqualTo(updateEmployeeCommand.Address));
+            Assert.That(result.Email, Is.EqualTo(updateEmployeeCommand.Email));
+            Assert.That(result.ContactNumber, Is.EqualTo(updateEmployeeCommand.ContactNumber));
+            Assert.That(result.ModifiedDate, Is.EqualTo(updateEmployeeCommand.ModifiedDate));
+
 
         }
     }

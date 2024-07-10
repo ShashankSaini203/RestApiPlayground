@@ -38,8 +38,6 @@ namespace RestApiPlayground.Test.Application.HandlerTests
                 CreationDate = DateTime.Now
             };
 
-            var employeeEntity = EmployeeMapper.Mapper.Map<Employee>(createEmployeeCommand);
-
             _mockCommandRepository.Setup(repo => repo.CreateAsync(It.IsAny<Employee>())).ReturnsAsync((Employee emp) => emp);
 
             //Act
