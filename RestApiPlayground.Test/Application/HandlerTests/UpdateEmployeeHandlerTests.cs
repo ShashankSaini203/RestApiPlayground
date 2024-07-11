@@ -7,6 +7,7 @@ using RestApiPlayground.Domain.Repositories.Command;
 
 namespace RestApiPlayground.Test.Application.HandlerTests
 {
+    [TestFixture]
     public class UpdateEmployeeHandlerTests
     {
         private Mock<IEmployeeCommandRepository> _mockCommandRepository;

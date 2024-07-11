@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Handlers.CommandHandler;
-using RestApiPlayground.Application.Mappers;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories.Command;
 

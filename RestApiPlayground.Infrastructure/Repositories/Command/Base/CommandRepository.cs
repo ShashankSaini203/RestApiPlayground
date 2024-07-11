@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RestApiPlayground.Domain.Repositories.Command.Base;
+﻿using RestApiPlayground.Domain.Repositories.Command.Base;
 using RestApiPlayground.Infrastructure.Data;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Command.Base
