@@ -9,17 +9,17 @@ namespace RestApiPlayground.Test.Application.HandlerTests
     public class GetEmployeeByIdHandlerTests
     {
         private Mock<IEmployeeQueryRepository> _mockQueryRepository;
-        private GetEmployeeByIdHandler getEmployeeByIdHandler;
+        private GetEmployeeByIdHandler _getEmployeeByIdHandler;
 
         [SetUp]
         public void Setup()
         {
             _mockQueryRepository = new Mock<IEmployeeQueryRepository>();
-            getEmployeeByIdHandler = new GetEmployeeByIdHandler(_mockQueryRepository.Object);
+            _getEmployeeByIdHandler = new GetEmployeeByIdHandler(_mockQueryRepository.Object);
         }
 
         [Test]
-        public async Task GetEmployeeByIdQueryHandler_ValidQuery_ShouldReturnEmployee()
+        public async Task GetEmployeeByIdHandler_ValidQuery_ShouldReturnEmployee()
         {
         }
     }
