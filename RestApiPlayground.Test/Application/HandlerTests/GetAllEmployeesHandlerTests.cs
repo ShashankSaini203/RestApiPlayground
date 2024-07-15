@@ -71,19 +71,20 @@ namespace RestApiPlayground.Test.Application.HandlerTests
 
             //Act
             var result = await _getAllEmployeesHandler.Handle(testQuery, CancellationToken.None);
-
+            var resultList = result.ToList();
             // Assert
             Assert.NotNull(result);
-            Assert.That(result.Count, Is.EqualTo(expectedEmployeeList.Count));
-            Assert.That(result.Id, Is.EqualTo(expectedEmployee.Id.ToString()));
-            Assert.That(result.FirstName, Is.EqualTo(expectedEmployee.FirstName));
-            Assert.That(result.LastName, Is.EqualTo(expectedEmployee.LastName));
-            Assert.That(result.Department, Is.EqualTo(expectedEmployee.Department));
-            Assert.That(result.Address, Is.EqualTo(expectedEmployee.Address));
-            Assert.That(result.Email, Is.EqualTo(expectedEmployee.Email));
-            Assert.That(result.ContactNumber, Is.EqualTo(expectedEmployee.ContactNumber));
-            Assert.That(result.CreationDate, Is.EqualTo(expectedEmployee.CreationDate));
-            Assert.That(result.ModifiedDate, Is.EqualTo(expectedEmployee.ModifiedDate));
+            for (int i = 0; i < expectedEmployeeList.Count; i++)
+            {
+                Assert.That(resultList[i].Id, Is.EqualTo(expectedEmployeeList[i].Id.ToString()));
+                Assert.That(resultList[i].FirstName, Is.EqualTo(expectedEmployeeList[i].FirstName));
+                Assert.That(resultList[i].LastName, Is.EqualTo(expectedEmployeeList[i].LastName));
+                Assert.That(resultList[i].Department, Is.EqualTo(expectedEmployeeList[i].Department));
+                Assert.That(resultList[i].Address, Is.EqualTo(expectedEmployeeList[i].Address));
+                Assert.That(resultList[i].Email, Is.EqualTo(expectedEmployeeList[i].Email));
+                Assert.That(resultList[i].ContactNumber, Is.EqualTo(expectedEmployeeList[i].ContactNumber));
+                Assert.That(resultList[i].CreationDate, Is.EqualTo(expectedEmployeeList[i].CreationDate));
+                Assert.That(resultList[i].ModifiedDate, Is.EqualTo(expectedEmployeeList[i].ModifiedDate));
+            }
         }
     }
-}
