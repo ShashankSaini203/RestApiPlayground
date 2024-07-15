@@ -26,7 +26,7 @@ namespace RestApiPlayground.Test.Application.HandlerTests
         public async Task CreateEmployeeHandler_ValidCommand_ShouldCreateAndReturnEmployee()
         {
             //Arrange
-            var createEmployeeCommand = new CreateEmployeeCommand
+            var createEmployeeCommand = new CreateEmployeeCommand()
             {
                 FirstName = "Monkey D",
                 LastName = "Luffy",
