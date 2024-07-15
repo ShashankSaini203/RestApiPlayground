@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Handlers.CommandHandler;
 using RestApiPlayground.Domain.Contracts;
@@ -24,14 +25,19 @@ namespace RestApiPlayground.Test.Application.HandlerTests
         [Test]
         public async Task DeleteEmployeeHandler_ValidCommand_ShouldDeleteEmployee()
         {
-            var command = new DeleteEmployeeCommand(1);
+            //Arrange
+            long testId = 1;
+            var command = new DeleteEmployeeCommand(testId);
 
             _mockEmployeeCommandRepository.Setup(_ => _.DeleteAsync(It.IsAny<Employee>())).Returns(Task.CompletedTask);
+            _mockEmployeeCommandRepository.Setup(_ => _.GetByIdAsync(It.IsAny<long>())).ReturnsAsync(new Employee());
 
-            _mockEmployeeCommandRepository.Setup(_ => _.GetByIdAsync(It.IsAny<long>())).ReturnsAsync((Employee emp) => emp);
+            //Act
+            var result = await _deleteEmployeeHandler.Handle(command, CancellationToken.None);
 
-            var result = _deleteEmployeeHandler.Handle(command, CancellationToken.None);
-
+            //Assert
+            Assert.That(result, Is.EqualTo("Employee has been deleted!"));
+            _mockEmployeeCommandRepository.Verify(repo => repo.GetByIdAsync(It.IsAny<long>()), Times.Once);
             _mockEmployeeCommandRepository.Verify(repo => repo.DeleteAsync(It.IsAny<Employee>()), Times.Once);
         }
     }
