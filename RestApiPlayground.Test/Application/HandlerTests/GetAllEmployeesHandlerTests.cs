@@ -2,11 +2,6 @@
 using NUnit.Framework;
 using RestApiPlayground.Application.Handlers.QueryHandler;
 using RestApiPlayground.Domain.Repositories.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestApiPlayground.Test.Application.HandlerTests
 {
