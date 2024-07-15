@@ -88,3 +88,4 @@ namespace RestApiPlayground.Test.Application.HandlerTests
             }
         }
     }
+}
