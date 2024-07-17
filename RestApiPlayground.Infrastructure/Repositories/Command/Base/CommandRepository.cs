@@ -22,7 +22,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Command.Base
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(ex.Message, ex);
             }
         }
 
@@ -35,7 +35,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Command.Base
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(ex.Message, ex);
             }
         }
     }
