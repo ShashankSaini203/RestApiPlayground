@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\MapperTests\" />
-    <Folder Include="Application\ValidatorTests\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 
