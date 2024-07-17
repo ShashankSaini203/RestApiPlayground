@@ -64,27 +64,18 @@ namespace RestApiPlayground.Test.Application.MapperTests
         [Test]
         public void ShouldMap_EmployeeResponse_To_Employee()
         {
-            var updateEmployeeCommand = new EmployeeResponse()
-            {
-                Id = 1,
-                FirstName = "TestFirstName",
-                LastName = "TestLastName",
-                Address = "TestAddress",
-                Department = "TestDepartment",
-                ContactNumber = "TestContactNumber",
-                Email = "TestEmail"
-            };
+            var employeeResponse = createTestEmployeeResponse();
 
-            var result = EmployeeMapper.Mapper.Map<Employee>(updateEmployeeCommand);
+            var result = EmployeeMapper.Mapper.Map<Employee>(employeeResponse);
 
             Assert.NotNull(result);
-            Assert.That(result.Id, Is.EqualTo(updateEmployeeCommand.Id));
-            Assert.That(result.FirstName, Is.EqualTo(updateEmployeeCommand.FirstName));
-            Assert.That(result.LastName, Is.EqualTo(updateEmployeeCommand.LastName));
-            Assert.That(result.Address, Is.EqualTo(updateEmployeeCommand.Address));
-            Assert.That(result.Department, Is.EqualTo(updateEmployeeCommand.Department));
-            Assert.That(result.ContactNumber, Is.EqualTo(updateEmployeeCommand.ContactNumber));
-            Assert.That(result.Email, Is.EqualTo(updateEmployeeCommand.Email));
+            Assert.That(result.Id.ToString(), Is.EqualTo(employeeResponse.Id));
+            Assert.That(result.FirstName, Is.EqualTo(employeeResponse.FirstName));
+            Assert.That(result.LastName, Is.EqualTo(employeeResponse.LastName));
+            Assert.That(result.Address, Is.EqualTo(employeeResponse.Address));
+            Assert.That(result.Department, Is.EqualTo(employeeResponse.Department));
+            Assert.That(result.ContactNumber, Is.EqualTo(employeeResponse.ContactNumber));
+            Assert.That(result.Email, Is.EqualTo(employeeResponse.Email));
         }
 
         [Test]
@@ -95,7 +86,7 @@ namespace RestApiPlayground.Test.Application.MapperTests
             var result = EmployeeMapper.Mapper.Map<EmployeeResponse>(employee);
 
             Assert.NotNull(result);
-            Assert.That(result.Id, Is.EqualTo(employee.Id.ToString()));
+            Assert.That(long.Parse(result.Id), Is.EqualTo(employee.Id));
             Assert.That(result.FirstName, Is.EqualTo(employee.FirstName));
             Assert.That(result.LastName, Is.EqualTo(employee.LastName));
             Assert.That(result.Address, Is.EqualTo(employee.Address));
@@ -110,6 +101,20 @@ namespace RestApiPlayground.Test.Application.MapperTests
         public Employee createTestEmployee() => new Employee()
         {
             Id = 1,
+            FirstName = "TestFirstName",
+            LastName = "TestLastName",
+            Address = "TestAddress",
+            Department = "TestDepartment",
+            ContactNumber = "TestContactNumber",
+            Email = "TestEmail",
+            CreationDate = DateTime.Now,
+            ModifiedDate = DateTime.Now
+
+        };
+
+        public EmployeeResponse createTestEmployeeResponse() => new EmployeeResponse()
+        {
+            Id = "1",
             FirstName = "TestFirstName",
             LastName = "TestLastName",
             Address = "TestAddress",
