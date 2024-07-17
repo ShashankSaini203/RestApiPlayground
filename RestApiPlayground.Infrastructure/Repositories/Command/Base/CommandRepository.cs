@@ -14,15 +14,29 @@ namespace RestApiPlayground.Infrastructure.Repositories.Command.Base
 
         public async Task<T> CreateAsync(T entity)
         {
-            await _dataContext.Set<T>().AddAsync(entity);
-            await _dataContext.SaveChangesAsync();
-            return entity;
+            try
+            {
+                await _dataContext.Set<T>().AddAsync(entity);
+                await _dataContext.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task DeleteAsync(T entity)
         {
-            _dataContext.Set<T>().Remove(entity);
-            await _dataContext.SaveChangesAsync();
+            try
+            {
+                _dataContext.Set<T>().Remove(entity);
+                await _dataContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
