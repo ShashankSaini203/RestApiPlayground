@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RestApiPlayground.Application\RestApiPlayground.Application.csproj" />
     <ProjectReference Include="..\RestApiPlayground.Domain\RestApiPlayground.Domain.csproj" />
   </ItemGroup>
