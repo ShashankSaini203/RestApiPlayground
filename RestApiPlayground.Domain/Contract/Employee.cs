@@ -1,5 +1,4 @@
 ﻿using RestApiPlayground.Domain.Contract.Base;
-using RestApiPlayground.Domain.Helpers.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace RestApiPlayground.Domain.Contracts
@@ -20,5 +19,19 @@ namespace RestApiPlayground.Domain.Contracts
         public string ContactNumber { get; set; }
 
         public string Address { get; set; }
+
+        public static Employee CreateEmployee(int id, string firstName, string lastName, string address, string department, string contactNumber, string email) =>
+            new Employee
+            {
+                Id = id,
+                FirstName = firstName,
+                LastName = lastName,
+                Address = address,
+                Department = department,
+                ContactNumber = contactNumber,
+                Email = email,
+                CreationDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            };
     }
 }
