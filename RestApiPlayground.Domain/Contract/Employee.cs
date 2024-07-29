@@ -29,9 +29,7 @@ namespace RestApiPlayground.Domain.Contracts
                 Address = address,
                 Department = department,
                 ContactNumber = contactNumber,
-                Email = email,
-                CreationDate = DateTime.Now,
-                ModifiedDate = DateTime.Now
+                Email = email
             };
     }
 }
