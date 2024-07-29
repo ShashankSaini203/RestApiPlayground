@@ -52,6 +52,13 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
 
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            _dbContext.Database.CloseConnection();
+            _dbContext.Dispose();
+        }
+
         public List<Employee> createTestEmployees() => new List<Employee>()
         {
             Employee.CreateEmployee(1, "TestFirstName1", "TestLastName1", "TestAddress1", "TestDepartment1", "TestContactNumber1", "TestEmail1"),
