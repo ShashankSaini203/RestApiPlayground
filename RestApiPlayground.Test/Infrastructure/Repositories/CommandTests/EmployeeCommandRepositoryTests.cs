@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Infrastructure.Data;
 using RestApiPlayground.Infrastructure.Repositories.Command;
@@ -91,6 +90,5 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
             Employee.CreateEmployee(2, "TestFirstName2", "TestLastNWame2", "TestAddress2", "TestDepartment2", "TestContactNumber2", "TestEmail2"),
             Employee.CreateEmployee(3, "TestFirstName3", "TestLastName3", "TestAddress3", "TestDepartment3", "TestContactNumber3", "TestEmail3")
         };
-
     }
 }
