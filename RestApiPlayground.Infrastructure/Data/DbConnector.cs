@@ -4,9 +4,9 @@ using System.Data;
 
 namespace RestApiPlayground.Infrastructure.Data
 {
-    public class DbConnector
+    public class DbConnector : IDbConnector
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public DbConnector(IConfiguration configuration)
         {

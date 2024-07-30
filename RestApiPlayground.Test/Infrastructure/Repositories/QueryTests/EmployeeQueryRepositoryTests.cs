@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using Moq;
+using Moq.Dapper;
 using NUnit.Framework;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Infrastructure.Data;
@@ -14,17 +15,18 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
     {
         private Mock<IConfiguration> _mockConfiguration;
         private Mock<IDbConnection> _mockDbConnection;
-        private Mock<DbConnector> _mockDbConnector;
-        private EmployeeQueryRepository _repository;
+        private Mock<IDbConnector> _mockDbConnector;
+        private Mock<EmployeeQueryRepository> _mockRepository;
 
         [SetUp]
         public void Setup()
         {
             _mockConfiguration = new Mock<IConfiguration>();
             _mockDbConnection = new Mock<IDbConnection>();
-            _mockDbConnector = new Mock<DbConnector>();
+            _mockDbConnector = new Mock<IDbConnector>();
 
-            _repository = new EmployeeQueryRepository(_mockConfiguration.Object);
+            _mockRepository = new Mock<EmployeeQueryRepository>(_mockConfiguration.Object) { CallBase = true };
+            _mockDbConnector.Setup(x => x.CreateConnection()).Returns(_mockDbConnection.Object);
         }
 
         [Test]
@@ -34,13 +36,12 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
             var employeeId = 1;
             var employee = new Employee { Id = employeeId, FirstName = "John Doe" };
 
-            _mockDbConnector.Setup(x => x.CreateConnection()).Returns(_mockDbConnection.Object);
             _mockDbConnection
-                .Setup(x => x.QueryFirstOrDefaultAsync<Employee>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
+                .SetupDapperAsync(x => x.QueryFirstOrDefaultAsync<Employee>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
                 .ReturnsAsync(employee);
 
             // Act
-            var result = await _repository.GetByIdAsync(employeeId);
+            var result = await _mockRepository.Object.GetByIdAsync(employeeId);
 
             // Assert
             Assert.IsNotNull(result);
