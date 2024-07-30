@@ -64,7 +64,6 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
                 "NewContactNumber",
                 "NewEmail1");
 
-
             // Act
             var result = await _repository.UpdateAsync(newEmployeeData);
 
