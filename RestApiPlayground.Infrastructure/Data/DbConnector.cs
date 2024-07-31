@@ -13,10 +13,15 @@ namespace RestApiPlayground.Infrastructure.Data
             _configuration = configuration;
         }
 
-        public IDbConnection CreateConnection()
+        public virtual IDbConnection CreateConnection()
         {
-            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            var connectionString = GetConnection();
             return new SqliteConnection(connectionString);
+        }
+
+        public virtual string GetConnection()
+        {
+            return _configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException();
         }
     }
 }

@@ -1,33 +1,29 @@
-﻿using Dapper;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Moq;
-using Moq.Dapper;
 using NUnit.Framework;
-using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Infrastructure.Data;
 using RestApiPlayground.Infrastructure.Repositories.Query;
-using System.Data;
 
 namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
 {
     [TestFixture]
     public class EmployeeQueryRepositoryTests
     {
-        private Mock<IConfiguration> _mockConfiguration;
-        private Mock<IDbConnection> _mockDbConnection;
-        private Mock<IDbConnector> _mockDbConnector;
-        private Mock<EmployeeQueryRepository> _mockRepository;
+        private Mock<IDbConnector> _connectorMock;
+        private Mock<IConfiguration> _configurationMock;
+        private EmployeeQueryRepository _repository;
 
         [SetUp]
         public void Setup()
         {
-            _mockConfiguration = new Mock<IConfiguration>();
-            _mockDbConnection = new Mock<IDbConnection>();
-            _mockDbConnector = new Mock<IDbConnector>() { CallBase = false };
+            _configurationMock = new Mock<IConfiguration>();
+            _connectorMock = new Mock<IDbConnector>(MockBehavior.Strict)
+            {
+                CallBase = true
+            };
+            _connectorMock.Setup(x => x.GetConnection()).Returns("DataSource=:memory:");
 
-            _mockConfiguration.Setup(x => x.GetConnectionString(It.IsAny<string>())).Returns("DataSource=:memory:");
-            _mockRepository = new Mock<EmployeeQueryRepository>(_mockConfiguration.Object) { CallBase = false };
-            _mockDbConnector.Setup(x => x.CreateConnection()).Returns(_mockDbConnection.Object);
+            _repository = new EmployeeQueryRepository(_configurationMock.Object);
         }
 
         [Test]
@@ -35,14 +31,9 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
         {
             // Arrange
             var employeeId = 1;
-            var employee = new Employee { Id = employeeId, FirstName = "John Doe" };
-
-            _mockDbConnection
-                .SetupDapperAsync(x => x.QueryFirstOrDefaultAsync<Employee>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
-                .ReturnsAsync(employee);
 
             // Act
-            var result = await _mockRepository.Object.GetByIdAsync(employeeId);
+            var result = await _repository.GetByIdAsync(employeeId);
 
             // Assert
             Assert.IsNotNull(result);

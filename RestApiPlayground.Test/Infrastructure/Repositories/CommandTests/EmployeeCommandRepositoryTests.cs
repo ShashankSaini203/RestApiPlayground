@@ -11,7 +11,7 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
         private DataContext _dbContext;
         private EmployeeCommandRepository _repository;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             _dbContext = TestDatabaseHelper.DbContext;
