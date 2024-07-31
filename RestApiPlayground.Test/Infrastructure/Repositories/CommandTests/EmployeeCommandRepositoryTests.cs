@@ -10,27 +10,11 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
     {
         private DataContext _dbContext;
         private EmployeeCommandRepository _repository;
-        private List<Employee> _employees;
 
         [SetUp]
         public void Setup()
         {
-            _employees = createTestEmployees();
-
-            // Use SQLite In-Memory Database
-            var options = new DbContextOptionsBuilder<DataContext>()
-                .UseSqlite("DataSource=:memory:")
-                .Options;
-
-            _dbContext = new DataContext(options);
-
-            // Ensure the database is created
-            _dbContext.Database.OpenConnection();
-            _dbContext.Database.EnsureCreated();
-
-            // Seed the database with test data
-            _dbContext.Employees.AddRange(_employees);
-            _dbContext.SaveChanges();
+            _dbContext = TestDatabaseHelper.DbContext;
 
             // Initialize repository
             _repository = new EmployeeCommandRepository(_dbContext);
@@ -76,19 +60,5 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
             Assert.That(result.Email, Is.EqualTo(newEmployeeData.Email));
             Assert.That(result.CreationDate, Is.EqualTo(newEmployeeData.CreationDate));
         }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _dbContext.Database.CloseConnection();
-            _dbContext.Dispose();
-        }
-
-        public List<Employee> createTestEmployees() => new List<Employee>()
-        {
-            Employee.CreateEmployee(1, "TestFirstName1", "TestLastName1", "TestAddress1", "TestDepartment1", "TestContactNumber1", "TestEmail1"),
-            Employee.CreateEmployee(2, "TestFirstName2", "TestLastNWame2", "TestAddress2", "TestDepartment2", "TestContactNumber2", "TestEmail2"),
-            Employee.CreateEmployee(3, "TestFirstName3", "TestLastName3", "TestAddress3", "TestDepartment3", "TestContactNumber3", "TestEmail3")
-        };
     }
 }

@@ -23,9 +23,10 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
         {
             _mockConfiguration = new Mock<IConfiguration>();
             _mockDbConnection = new Mock<IDbConnection>();
-            _mockDbConnector = new Mock<IDbConnector>();
+            _mockDbConnector = new Mock<IDbConnector>() { CallBase = false };
 
-            _mockRepository = new Mock<EmployeeQueryRepository>(_mockConfiguration.Object) { CallBase = true };
+            _mockConfiguration.Setup(x => x.GetConnectionString(It.IsAny<string>())).Returns("DataSource=:memory:");
+            _mockRepository = new Mock<EmployeeQueryRepository>(_mockConfiguration.Object) { CallBase = false };
             _mockDbConnector.Setup(x => x.CreateConnection()).Returns(_mockDbConnection.Object);
         }
 
