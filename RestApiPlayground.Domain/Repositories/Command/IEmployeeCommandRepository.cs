@@ -5,7 +5,7 @@ namespace RestApiPlayground.Domain.Repositories.Command
 {
     public interface IEmployeeCommandRepository : ICommandRepository<Employee>
     {
-        Task<Employee> GetByIdAsync(long id);
+        //Task<Employee> GetByIdAsync(long id);
 
         Task<Employee> UpdateAsync(Employee entity);
     }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Domain.Repositories.Command;
+using RestApiPlayground.Domain.Repositories.Query;
 
 namespace RestApiPlayground.Application.Handlers.CommandHandler
 {
@@ -8,14 +9,17 @@ namespace RestApiPlayground.Application.Handlers.CommandHandler
     {
         private readonly IEmployeeCommandRepository _employeeCommandRepository;
 
-        public DeleteEmployeeHandler(IEmployeeCommandRepository employeeCommandRepository)
+        private readonly IEmployeeQueryRepository _employeeQueryRepository;
+
+        public DeleteEmployeeHandler(IEmployeeCommandRepository employeeCommandRepository, IEmployeeQueryRepository employeeQueryRepository)
         {
             _employeeCommandRepository = employeeCommandRepository;
+            _employeeQueryRepository = employeeQueryRepository;
         }
 
         public async Task<string> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
         {
-            var employeeToDelete = await _employeeCommandRepository.GetByIdAsync(request.Id);
+            var employeeToDelete = await _employeeQueryRepository.GetByIdAsync(request.Id);
 
             if (employeeToDelete is null)
             {

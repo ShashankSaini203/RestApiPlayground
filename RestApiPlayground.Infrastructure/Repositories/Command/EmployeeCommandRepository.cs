@@ -15,18 +15,18 @@ namespace RestApiPlayground.Infrastructure.Repositories.Command
             _dataContext = dataContext;
         }
 
-        public async Task<Employee> GetByIdAsync(long id)
-        {
-            try
-            {
-                _dataContext.Set<Employee>().AsNoTracking();
-                return await _dataContext.Set<Employee>().FindAsync(id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
-        }
+        //public async Task<Employee> GetByIdAsync(long id)
+        //{
+        //    try
+        //    {
+        //        _dataContext.Set<Employee>().AsNoTracking();
+        //        return await _dataContext.Set<Employee>().FindAsync(id);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message, ex);
+        //    }
+        //}
 
         public async Task<Employee> UpdateAsync(Employee employeeEntity)
         {
