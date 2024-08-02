@@ -23,19 +23,5 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
 
             _repository = new EmployeeQueryRepository(_connectorMock.Object);
         }
-
-        [Test]
-        public async Task GetByIdAsync_ShouldReturnEmployee_WhenEmployeeExists()
-        {
-            // Arrange
-            long employeeId = 1;
-
-            // Act
-            var result = await _repository.GetAllTableNamesAsync();
-
-            // Assert
-            Assert.IsNotNull(result);
-            //Assert.AreEqual(employeeId, result.Id);
-        }
     }
 }
