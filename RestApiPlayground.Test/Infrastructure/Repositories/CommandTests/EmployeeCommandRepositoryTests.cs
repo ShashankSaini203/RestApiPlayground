@@ -47,7 +47,7 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
 
             //Revert
             var oldData = Employee.CreateEmployee(1, "TestFirstName1", "TestLastName1", "TestAddress1", "TestDepartment1", "TestContactNumber1", "TestEmail1");
-            var revertedResult = await _repository.UpdateAsync(oldData);
+            await _repository.UpdateAsync(oldData);
         }
     }
 }
