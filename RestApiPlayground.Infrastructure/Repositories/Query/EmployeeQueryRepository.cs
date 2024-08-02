@@ -38,5 +38,21 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query
             }
 
         }
+        public async Task<IEnumerable<string>> GetAllTableNamesAsync()
+        {
+            try
+            {
+                var query = "SELECT name FROM sqlite_master WHERE type = 'table'";
+
+                using (var connection = _dbConnector.CreateConnection())
+                {
+                    return await connection.QueryAsync<string>(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
     }
 }

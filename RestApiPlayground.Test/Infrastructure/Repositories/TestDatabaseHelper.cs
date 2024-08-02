@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Infrastructure.Data;
@@ -10,15 +11,19 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories
     {
         public static DataContext DbContext { get; private set; }
         public static List<Employee> Employees { get; private set; }
+        public static SqliteConnection SharedConnection { get; private set; }
 
         [OneTimeSetUp]
         public static void SetupTestDatabase()
         {
             Employees = createTestEmployees();
 
+            SharedConnection = new SqliteConnection("DataSource=:memory:");
+            SharedConnection.Open();
+
             // Use SQLite In-Memory Database
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseSqlite("DataSource=:memory:")
+                .UseSqlite(SharedConnection)
             .Options;
 
             DbContext = new DataContext(options);
@@ -37,6 +42,7 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories
         {
             DbContext.Database.CloseConnection();
             DbContext.Dispose();
+            SharedConnection.Close();
         }
 
         public static List<Employee> createTestEmployees() => new List<Employee>()

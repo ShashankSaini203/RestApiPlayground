@@ -15,13 +15,8 @@ namespace RestApiPlayground.Infrastructure.Data
 
         public virtual IDbConnection CreateConnection()
         {
-            var connectionString = GetConnection();
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
             return new SqliteConnection(connectionString);
-        }
-
-        public virtual string GetConnection()
-        {
-            return _configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException();
         }
     }
 }

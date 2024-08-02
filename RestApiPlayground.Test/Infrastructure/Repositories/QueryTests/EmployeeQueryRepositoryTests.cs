@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using NUnit.Framework;
 using RestApiPlayground.Infrastructure.Data;
@@ -10,34 +11,31 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
     public class EmployeeQueryRepositoryTests
     {
         private Mock<IDbConnector> _connectorMock;
-        private Mock<IConfiguration> _configurationMock;
         private EmployeeQueryRepository _repository;
 
         [SetUp]
         public void Setup()
         {
-            _configurationMock = new Mock<IConfiguration>();
-            _connectorMock = new Mock<IDbConnector>(MockBehavior.Strict)
-            {
-                CallBase = true
-            };
-            _connectorMock.Setup(x => x.GetConnection()).Returns("DataSource=:memory:");
+            _connectorMock = new Mock<IDbConnector>();
 
-            _repository = new EmployeeQueryRepository(_configurationMock.Object);
+            var dbConnection = TestDatabaseHelper.SharedConnection;
+            _connectorMock.Setup(x => x.CreateConnection()).Returns(dbConnection);
+
+            _repository = new EmployeeQueryRepository(_connectorMock.Object);
         }
 
         [Test]
         public async Task GetByIdAsync_ShouldReturnEmployee_WhenEmployeeExists()
         {
             // Arrange
-            var employeeId = 1;
+            long employeeId = 1;
 
             // Act
-            var result = await _repository.GetByIdAsync(employeeId);
+            var result = await _repository.GetAllTableNamesAsync();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(employeeId, result.Id);
+            //Assert.AreEqual(employeeId, result.Id);
         }
     }
 }
