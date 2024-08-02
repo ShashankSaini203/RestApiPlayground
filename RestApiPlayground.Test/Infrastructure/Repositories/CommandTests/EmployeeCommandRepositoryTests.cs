@@ -23,6 +23,7 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
         [Test]
         public async Task UpdateAsync_ValidCommand_UpdatesEmployeeData()
         {
+            
             var newEmployeeData = Employee.CreateEmployee(1,
                 "NewFirstName",
                 "NewLastName",
@@ -43,6 +44,10 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
             Assert.That(result.ContactNumber, Is.EqualTo(newEmployeeData.ContactNumber));
             Assert.That(result.Email, Is.EqualTo(newEmployeeData.Email));
             Assert.That(result.CreationDate, Is.EqualTo(newEmployeeData.CreationDate));
+
+            //Revert
+            var oldData = Employee.CreateEmployee(1, "TestFirstName1", "TestLastName1", "TestAddress1", "TestDepartment1", "TestContactNumber1", "TestEmail1");
+            var revertedResult = await _repository.UpdateAsync(oldData);
         }
     }
 }
