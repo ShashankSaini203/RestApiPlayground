@@ -36,6 +36,8 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(employeeId, result.Id);
+            Assert.AreEqual("TestFirstName1", result.FirstName);
+            Assert.AreEqual("TestLastName1", result.LastName);
         }
     }
 }

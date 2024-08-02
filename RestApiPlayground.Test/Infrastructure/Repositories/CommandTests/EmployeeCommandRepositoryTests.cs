@@ -21,22 +21,6 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
         }
 
         [Test]
-        public async Task GetByIdAsyncCommand_ValidCommand_GiveEmployeeData()
-        {
-            var employeeId = 1;
-
-            // Act
-            var result = await _repository.GetByIdAsync(employeeId);
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(employeeId, result.Id);
-            Assert.AreEqual("TestFirstName1", result.FirstName);
-            Assert.AreEqual("TestLastName1", result.LastName);
-
-        }
-
-        [Test]
         public async Task UpdateAsync_ValidCommand_UpdatesEmployeeData()
         {
             var newEmployeeData = Employee.CreateEmployee(1,
