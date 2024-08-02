@@ -5,9 +5,14 @@ using RestApiPlayground.Infrastructure.Data;
 
 namespace RestApiPlayground.Infrastructure.Repositories.Query.Base
 {
-    public class QueryRepository<T> : DbConnector, IQueryRepository<T> where T : class
+    public class QueryRepository<T> : IQueryRepository<T> where T : class
     {
-        public QueryRepository(IConfiguration configuration) : base(configuration) { }
+        public IDbConnector _dbConnector;
+
+        public QueryRepository(IDbConnector dbConnector)
+        {
+            _dbConnector = dbConnector;           
+        }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
@@ -15,7 +20,7 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query.Base
             {
                 var query = "SELECT * FROM EMPLOYEES";
 
-                using (var connection = CreateConnection())
+                using (var connection = _dbConnector.CreateConnection())
                 {
                     return (await connection.QueryAsync<T>(query)).ToList();
                 }

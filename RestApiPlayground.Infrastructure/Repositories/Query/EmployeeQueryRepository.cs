@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories.Query;
+using RestApiPlayground.Infrastructure.Data;
 using RestApiPlayground.Infrastructure.Repositories.Query.Base;
 using System.Data;
 
@@ -9,7 +10,12 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query
 {
     public class EmployeeQueryRepository : QueryRepository<Employee>, IEmployeeQueryRepository
     {
-        public EmployeeQueryRepository(IConfiguration configuration) : base(configuration) { }
+        public IDbConnector _dbConnector;
+
+        public EmployeeQueryRepository(IDbConnector dbConnector) : base(dbConnector)
+        {
+            _dbConnector = dbConnector;
+        }
 
         public async Task<Employee> GetByIdAsync(long id)
         {
@@ -20,13 +26,13 @@ namespace RestApiPlayground.Infrastructure.Repositories.Query
                 var parameters = new DynamicParameters();
                 parameters.Add("Id", id, DbType.Int64);
 
-                using (var connection = CreateConnection())
+                using (var connection = _dbConnector.CreateConnection())
                 {
                     return await connection.QueryFirstOrDefaultAsync<Employee>(query, parameters);
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message, ex);
             }

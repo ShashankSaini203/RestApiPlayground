@@ -25,6 +25,8 @@ namespace RestApiPlayground.API
 
             builder.RegisterType<DataContext>().AsSelf().InstancePerLifetimeScope();
 
+            builder.RegisterType<DbConnector>().As<IDbConnector>().InstancePerLifetimeScope();
+
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 
 
