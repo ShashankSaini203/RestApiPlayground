@@ -1,6 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Configuration;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using RestApiPlayground.Infrastructure.Data;
 using RestApiPlayground.Infrastructure.Repositories.Query;
