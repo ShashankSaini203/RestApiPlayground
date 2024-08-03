@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using RestApiPlayground.Application.Commands;
 using RestApiPlayground.Application.Handlers.QueryHandler;
 using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Domain.Contracts;

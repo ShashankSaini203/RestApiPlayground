@@ -4,7 +4,6 @@ using RestApiPlayground.Application.Handlers.QueryHandler;
 using RestApiPlayground.Application.Queries;
 using RestApiPlayground.Domain.Contracts;
 using RestApiPlayground.Domain.Repositories.Query;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RestApiPlayground.Test.Application.HandlerTests
 {
