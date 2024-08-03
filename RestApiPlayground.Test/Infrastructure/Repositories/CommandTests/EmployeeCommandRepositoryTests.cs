@@ -23,14 +23,18 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
         [Test]
         public async Task UpdateAsync_ValidCommand_UpdatesEmployeeData()
         {
-            
-            var newEmployeeData = Employee.CreateEmployee(1,
-                "NewFirstName",
-                "NewLastName",
-                "NewAddress",
-                "NewDepartment",
-                "NewContactNumber",
-                "NewEmail1");
+
+            var newEmployeeData = new Employee()
+            {
+                Id = 1,
+                FirstName="NewFirstName",
+                LastName="NewLastName",
+                Address="NewAddress",
+                Department="NewDepartment",
+                ContactNumber="NewContactNumber",
+                Email="NewEmail1",
+                ModifiedDate=DateTime.Now
+            };
 
             // Act
             var result = await _repository.UpdateAsync(newEmployeeData);
@@ -43,10 +47,10 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.CommandTests
             Assert.That(result.Department, Is.EqualTo(newEmployeeData.Department));
             Assert.That(result.ContactNumber, Is.EqualTo(newEmployeeData.ContactNumber));
             Assert.That(result.Email, Is.EqualTo(newEmployeeData.Email));
-            Assert.That(result.CreationDate, Is.EqualTo(newEmployeeData.CreationDate));
+            Assert.That(result.ModifiedDate, Is.EqualTo(newEmployeeData.ModifiedDate));
 
             //Revert
-            var oldData = Employee.CreateEmployee(1, "TestFirstName1", "TestLastName1", "TestAddress1", "TestDepartment1", "TestContactNumber1", "TestEmail1");
+            var oldData = Employee.CreateEmployee(1, "TestFirstName1", "TestLastName1", "TestAddress1", "TestDepartment1", "TestContactNumber1", "TestEmail1", DateTime.Now);
             await _repository.UpdateAsync(oldData);
         }
     }

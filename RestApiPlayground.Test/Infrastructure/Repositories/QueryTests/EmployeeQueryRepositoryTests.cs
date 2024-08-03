@@ -38,6 +38,10 @@ namespace RestApiPlayground.Test.Infrastructure.Repositories.QueryTests
             Assert.AreEqual(employeeId, result.Id);
             Assert.AreEqual("TestFirstName1", result.FirstName);
             Assert.AreEqual("TestLastName1", result.LastName);
+            Assert.AreEqual("TestAddress1", result.Address);
+            Assert.AreEqual("TestDepartment1", result.Department);
+            Assert.AreEqual("TestEmail1", result.Email);
+            Assert.AreEqual("TestContactNumber1", result.ContactNumber);
         }
     }
 }

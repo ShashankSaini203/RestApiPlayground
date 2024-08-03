@@ -20,7 +20,7 @@ namespace RestApiPlayground.Domain.Contracts
 
         public string Address { get; set; }
 
-        public static Employee CreateEmployee(int id, string firstName, string lastName, string address, string department, string contactNumber, string email) =>
+        public static Employee CreateEmployee(int id, string firstName, string lastName, string address, string department, string contactNumber, string email, DateTime creationDate) =>
             new Employee
             {
                 Id = id,
@@ -29,7 +29,8 @@ namespace RestApiPlayground.Domain.Contracts
                 Address = address,
                 Department = department,
                 ContactNumber = contactNumber,
-                Email = email
+                Email = email,
+                CreationDate = creationDate
             };
     }
 }
